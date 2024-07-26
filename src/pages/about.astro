@@ -1,22 +1,38 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const title = "About";
+
+const identity = {
+    firstName: "John",
+    country: "United States",
+    occupation: "Automation Engineer",
+    hobbies: ["Coding", "Reading", "Traveling"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "Astro", "Python"];
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>About | Coolify Hosted Blog</title>
-    </head>
-    <body>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/blog">Blog</a>
-        <h1>About me</h1>
-        <h2>... and my new Astro blog!</h2>
-        <p>I am working through the Astro docs to create a blog.</p>
-        <p>I will update this page as I complete the tutorial.</p>
-    </body>
-</html>
+<BaseLayout title={title}>
+    <h1>About me</h1>
+    <h2>... and my new Astro blog!</h2>
+    <p>I am working through the Astro docs to create a blog.</p>
+    <p>I will update this page as I complete the tutorial.</p>
+
+    <p>Here are some facts about me:</p>
+    <ul>
+        <li>My name is {identity.firstName}</li>
+        <li>
+            I live in {identity.country} where I work as a {identity.occupation}
+        </li>
+        {
+            identity.hobbies.length > 1 && (
+                <li>My hobbies are {identity.hobbies.join(", ")}</li>
+            )
+        }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+</BaseLayout>
